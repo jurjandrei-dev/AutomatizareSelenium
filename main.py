@@ -1,6 +1,6 @@
 from tasks.check_price import get_emag_price
 #from tasks.forms import complete_form
-#from tasks.teams import send_teams_message
+from tasks.teams import send_teams_message
 
 def main():
     print("1. Verificare preț eMAG")
@@ -16,8 +16,9 @@ def main():
         #complete_form()
         print("Option 2")
     elif opt == "3":
-        #send_teams_message()
-        print("Option 3")
+        user_name = input("Scrieti numele persoanei: ")
+        message = input("Scrieti un mesaj: ")
+        send_teams_message(user_name, message)
     else:
         print("Opțiune invalidă.")
 

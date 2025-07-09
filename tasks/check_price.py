@@ -13,9 +13,7 @@ def get_emag_price(url: str) -> float | None:
 
     try:
         driver.get(url)
-        print("Pagina s-a deschis. Aștept 5 secunde...")
-        time.sleep(5)
-
+        print("Pagina s-a deschis!")
         elements = driver.find_elements(By.CLASS_NAME, "product-new-price")
 
         if elements:
@@ -23,7 +21,8 @@ def get_emag_price(url: str) -> float | None:
             if "Lei" in text and "," in text:
                 pret_curat = (
                     text.replace("Lei", "")
-                    .replace(",", ".")
+                    .replace(".", "")    
+                    .replace(",", ".")    
                     .replace(" ", "")
                     .strip()
                 )
