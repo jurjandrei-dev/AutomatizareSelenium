@@ -17,13 +17,20 @@ def start_chrome_debug():
     ])
     time.sleep(3)
 
-def get_driver():
-    
-    start_chrome_debug()
-    
-    options = Options()
-    #options.add_argument("--headless")  # activeaza daca vrei rulare fara interfata grafica
-    options.debugger_address = f"127.0.0.1:{DEBUG_PORT}"
-    options.add_argument("user-agent=Mozilla/5.0 ...")
+def get_driver(headless=False, use_debug=True):
+    if use_debug:
+        start_chrome_debug()
 
-    return webdriver.Chrome(options=options)
+        options = Options()
+        if headless:
+            options.add_argument("--headless=new")
+        options.debugger_address = f"127.0.0.1:{DEBUG_PORT}"
+        options.add_argument("user-agent=Mozilla/5.0 ...")
+        return webdriver.Chrome(options=options)
+    else:
+        options = Options()
+        if headless:
+            options.add_argument("--headless=new")
+        options.add_argument("user-agent=Mozilla/5.0 ...")
+        return webdriver.Chrome(options=options)
+

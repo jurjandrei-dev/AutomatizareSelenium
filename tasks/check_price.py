@@ -9,7 +9,7 @@ from config import CHROME_PATH, DRIVER_PATH
 
 
 def get_emag_price(url: str) -> float | None:
-    driver = get_driver()
+    driver = get_driver(True, False)
 
     try:
         driver.get(url)
